@@ -1,5 +1,7 @@
 var displayValue = document.querySelector('#displayValue');
-
+var operator = '';
+var firstInput = '';
+var secondInput = '';
 
 function add(a, b){
     return a + b;
@@ -40,10 +42,40 @@ function inputKey(display, button){
     }
 }
 
-const keypad = document.querySelectorAll(".number");
+const keypad = document.querySelectorAll("#number");
+const operatorKeys = document.querySelectorAll("#operator");
+const equalKey = document.querySelector("#equals");
+const clearKey = document.querySelector("#clear");
 
 keypad.forEach((button) => {
     button.addEventListener('click', function(){
         inputKey(displayValue, button.textContent);
     });
 });
+
+operatorKeys.forEach((button) => {
+    button.addEventListener('click', function(){
+        firstInput = displayValue.textContent;
+        if(!operator){
+        displayValue.textContent = displayValue.textContent.concat(button.textContent);
+        } else {
+            displayValue.textContent = displayValue.textContent.slice(0, -1).concat(button.textContent);
+        }
+        operator = button.textContent;
+        console.log(operator);
+    });
+});
+
+equalKey.addEventListener('click', function(){
+    equalsKey();
+})
+
+
+
+function equalsKey(){
+    firstInput = parseInt(firstInput);
+    secondInput = parseInt(displayValue.textContent.split(operator).pop());
+    console.log(secondInput);
+    displayValue.textContent = operate(firstInput, secondInput, operator);
+    operator = '';
+}
