@@ -58,12 +58,12 @@ const operatorList = ['+', '-', '*', '/'];
 
 operatorKeys.forEach((button) => {
     button.addEventListener('click', function(){
-        if(operator){
+        if (operatorList.some((element) => element == displayValue.textContent.charAt(displayValue.textContent.length-1))){
+            displayValue.textContent = displayValue.textContent.slice(0, -1).concat(button.textContent);
+        } else if(operator){
             equalsKey();
             firstInput = displayValue.textContent;
             displayValue.textContent = displayValue.textContent.concat(button.textContent);
-        } else if (operatorList.some((operator) => operator == displayValue.textContent.charAt(-1))){
-            displayValue.textContent = displayValue.textContent.slice(0, -1).concat(button.textContent);
         } else if(!operator){
             firstInput = displayValue.textContent;
             displayValue.textContent = displayValue.textContent.concat(button.textContent);
@@ -84,6 +84,9 @@ clearKey.addEventListener('click', function(){
 })
 
 function equalsKey(){
+    if(!firstInput || !operator || operatorList.some((operator) => operator == displayValue.textContent.charAt(displayValue.textContent.length-1))){
+        return;
+    }
     firstInput = parseInt(firstInput);
     secondInput = parseInt(displayValue.textContent.split(operator).pop());
     console.log(firstInput);
