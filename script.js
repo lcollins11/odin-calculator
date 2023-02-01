@@ -70,7 +70,12 @@ equalKey.addEventListener('click', function(){
     equalsKey();
 })
 
-
+clearKey.addEventListener('click', function(){
+    displayValue.textContent = '0';
+    firstInput = '';
+    secondInput = '';
+    operator = '';
+})
 
 function equalsKey(){
     firstInput = parseInt(firstInput);
