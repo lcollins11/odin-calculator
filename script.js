@@ -53,16 +53,22 @@ keypad.forEach((button) => {
     });
 });
 
+
+const operatorList = ['+', '-', '*', '/'];
+
 operatorKeys.forEach((button) => {
     button.addEventListener('click', function(){
-        firstInput = displayValue.textContent;
-        if(!operator){
-        displayValue.textContent = displayValue.textContent.concat(button.textContent);
-        } else {
+        if(operator){
+            equalsKey();
+            firstInput = displayValue.textContent;
+            displayValue.textContent = displayValue.textContent.concat(button.textContent);
+        } else if (operatorList.some((operator) => operator == displayValue.textContent.charAt(-1))){
             displayValue.textContent = displayValue.textContent.slice(0, -1).concat(button.textContent);
-        }
+        } else if(!operator){
+            firstInput = displayValue.textContent;
+            displayValue.textContent = displayValue.textContent.concat(button.textContent);
+        } 
         operator = button.textContent;
-        console.log(operator);
     });
 });
 
@@ -80,7 +86,9 @@ clearKey.addEventListener('click', function(){
 function equalsKey(){
     firstInput = parseInt(firstInput);
     secondInput = parseInt(displayValue.textContent.split(operator).pop());
+    console.log(firstInput);
     console.log(secondInput);
+    console.log(operator);
     displayValue.textContent = operate(firstInput, secondInput, operator);
     operator = '';
 }
