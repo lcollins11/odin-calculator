@@ -105,7 +105,7 @@ function equalsKey(){
     console.log(secondInput);
     console.log(operator);
     if(secondInput == 0 && operator == '/'){
-        alert("Come on now, you and I both know that won't work");
+        alert("Come on now, you and I both know that won't work...");
         displayValue.textContent = '0';
     } else{
         displayValue.textContent = operate(firstInput, secondInput, operator);
