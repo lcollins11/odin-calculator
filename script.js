@@ -92,6 +92,11 @@ function equalsKey(){
     console.log(firstInput);
     console.log(secondInput);
     console.log(operator);
-    displayValue.textContent = operate(firstInput, secondInput, operator);
+    if(secondInput == 0 && operator == '/'){
+        alert("Come on now, you and I both know that won't work");
+        displayValue.textContent = '0';
+    } else{
+        displayValue.textContent = operate(firstInput, secondInput, operator);
+    }
     operator = '';
 }
