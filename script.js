@@ -4,11 +4,11 @@ var firstInput = '';
 var secondInput = '';
 const operatorList = ['+', '-', '*', '/'];
 
-var displayValue = document.querySelector('#displayValue');
-const keypad = document.querySelectorAll("#number");
-const operatorKeys = document.querySelectorAll("#operator");
-const equalKey = document.querySelector("#equals");
-const clearKey = document.querySelector("#clear");
+var displayValue = document.querySelector('[data-type="display"]');
+const keypad = document.querySelectorAll('[data-type="number"]');
+const operatorKeys = document.querySelectorAll('[data-type="operator"]');
+const equalKey = document.querySelector('[data-type="equals"]');
+const clearKey = document.querySelector('[data-type="clear"]');
 
 
 //Event Listeners
@@ -30,7 +30,7 @@ equalKey.addEventListener('click', function(){
 
 clearKey.addEventListener('click', function(){
     clearAll();
-})
+}) 
 
 window.addEventListener('keydown', function(e){
     processInput(e.key);
