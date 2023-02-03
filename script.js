@@ -38,7 +38,7 @@ window.addEventListener('keydown', function(e){
 
 //Helper Functions
 function processInput(key){
-    if(key.match(/^-?\d+$/)){
+    if(key.match(/^-?\d+$/) || key === '.'){
         inputKey(key);
     }
     if(operatorList.some((element) => element == key)){
@@ -67,7 +67,11 @@ function operate(firstOperand, nextOperand, operator){
 
 //Button Functions
 function inputKey(button){
-    if(button === '.' && displayValue.textContent.slice(firstInput,-1).includes('.')) return;
+    if(button === '.'){
+        if(firstInput){
+            if(displayValue.textContent.replace(firstInput, '').includes('.')) return;
+        } else if(displayValue.textContent.includes('.')) return;
+    }
     if(displayValue.textContent === '0'){
         displayValue.textContent = button;
     } else{
