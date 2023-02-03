@@ -67,6 +67,7 @@ function operate(firstOperand, nextOperand, operator){
 
 //Button Functions
 function inputKey(button){
+    if(button === '.' && displayValue.textContent.slice(firstInput,-1).includes('.')) return;
     if(displayValue.textContent === '0'){
         displayValue.textContent = button;
     } else{
@@ -99,8 +100,8 @@ function equalsKey(){
     if(!firstInput || !operator || operatorList.some((operator) => operator == displayValue.textContent.charAt(displayValue.textContent.length-1))){
         return;
     }
-    firstInput = parseInt(firstInput);
-    secondInput = parseInt(displayValue.textContent.split(operator).pop());
+    firstInput = parseFloat(firstInput);
+    secondInput = parseFloat(displayValue.textContent.split(operator).pop());
     console.log(firstInput);
     console.log(secondInput);
     console.log(operator);
