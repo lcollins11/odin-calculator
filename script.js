@@ -106,9 +106,6 @@ function equalsKey(){
     }
     firstInput = parseFloat(firstInput);
     secondInput = parseFloat(displayValue.textContent.split(operator).pop());
-    console.log(firstInput);
-    console.log(secondInput);
-    console.log(operator);
     if(secondInput == 0 && operator == '/'){
         alert("Come on now, you and I both know that won't work...");
         displayValue.textContent = '0';
@@ -116,4 +113,32 @@ function equalsKey(){
         displayValue.textContent = operate(firstInput, secondInput, operator);
     }
     operator = '';
+}
+
+
+const gridInputs = document.querySelectorAll(".grid-input");
+
+const subTotals = document.querySelectorAll('[data-column="subtotal"]');
+
+gridInputs.forEach(input => {
+    input.addEventListener('input', () => {
+        updateTotals();
+    })
+})
+
+function updateTotals(){
+    subTotals.forEach(subTotal => {
+        const currentRow = subTotal.dataset.row;
+        var price = 0;
+        var quantity = 0;
+        const rowPrice = document.querySelector(`[data-column="price"][data-row="${currentRow}"]`);
+        const rowQuantity = document.querySelector(`[data-column="quantity"][data-row="${currentRow}"]`);
+        if(rowPrice.value){
+            price = rowPrice.value;
+        }
+        if(rowQuantity.value){
+            quantity = rowQuantity.value;
+        }
+        subTotal.textContent = price * quantity;
+    })
 }
