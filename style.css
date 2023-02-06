@@ -12,18 +12,23 @@ body{
     justify-content: center;
 }
 
-.grid-builder{
+.case.total{
+    text-align: center;
+    width: 100%;
+}
+
+.case-builder{
     align-self: end;
     margin: auto;
 }
 
-.container-grid{
+.container-case{
     display: grid;
     grid-template-columns: 5fr repeat(3, 2fr);
     margin: 10px;
 }
 
-.grid-input{
+.case-input{
     background-color: var(--primary);
     box-shadow: 1px 1px var(--secondaryColour);
     border: 0px solid var(--secondaryColour);
